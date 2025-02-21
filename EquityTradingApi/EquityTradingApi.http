@@ -1,0 +1,6 @@
+@EquityTradingApi_HostAddress = http://localhost:5012
+
+GET {{EquityTradingApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
