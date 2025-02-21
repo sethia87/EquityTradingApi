@@ -1,9 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using EquityTradingApi.AppDbContext;
 
-
-// Main Entry Point
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EquityDbContext>(options =>
                               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
