@@ -41,7 +41,7 @@ namespace EquityTradingApi.Controllers
         private void UpdatePositions(Transaction transaction)
         {
             var position = context.Positions.FirstOrDefault(p => p.SecurityCode == transaction.SecurityCode);
-            if (transaction.Action == "INSERT"  )
+            if (transaction.Action == "INSERT")
             {
                 if (position == null)
                 {
@@ -71,8 +71,14 @@ namespace EquityTradingApi.Controllers
             {
                 if (position != null)
                 {
-                    int quantityChange = transaction.BuySell == "Buy" ? -transaction.Quantity : transaction.Quantity;
-                    position.Quantity += quantityChange;
+                    //int quantityChange = transaction.BuySell == "Buy" ? -transaction.Quantity : transaction.Quantity;
+                    if (transaction.Version != 1)
+                        position.Quantity = 0;
+                    else
+                    {
+                        int quantityChange = transaction.BuySell == "Buy" ? -transaction.Quantity : transaction.Quantity;
+                        position.Quantity += quantityChange;
+                    }
                     context.Positions.Update(position);
                 }
             }
